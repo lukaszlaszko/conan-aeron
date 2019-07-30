@@ -145,4 +145,4 @@ class LibnameConan(ConanFile):
         self.cpp_info.defines.append("_ENABLE_EXTENDED_ALIGNED_STORAGE")
 
         resources_folder = os.path.join(self.package_folder, "resources")
-        self.cpp_info.defines.append("Aeron_RESOURCES_DIR={}".format(resources_folder))
+        self.user_info.RESOURCES_DIR = resources_folder
