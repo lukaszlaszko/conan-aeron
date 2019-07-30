@@ -130,6 +130,10 @@ class LibnameConan(ConanFile):
             for f in files:
                 shutil.move(old_include_folder + f, new_include_folder)
 
+        # additional resources
+        archiveDir = os.path.join(self.source_subfolder, "aeron-archive/src/main/resources")
+        self.copy("*", dst="resources", src=archiveDir)
+
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.includedirs.append("include/{}".format(self.name))
@@ -139,3 +143,6 @@ class LibnameConan(ConanFile):
         
         # See: https://github.com/real-logic/aeron/blob/23f9ef8c6bd25955c3a64454f4e5d9c4a86c8d5a/CMakeLists.txt#L213
         self.cpp_info.defines.append("_ENABLE_EXTENDED_ALIGNED_STORAGE")
+
+        resources_folder = os.path.join(self.package_folder, "resources")
+        self.cpp_info.defines.append("Aeron_RESOURCES_DIR={}".format(resources_folder))
