@@ -7,6 +7,7 @@ import os
 import shutil
 import re
 
+
 def replace(file, pattern, subst):
     # Read contents from file as a single string
     file_handle = open(file, 'r')
@@ -22,19 +23,16 @@ def replace(file, pattern, subst):
     file_handle.write(file_string)
     file_handle.close()
 
-class LibnameConan(ConanFile):
+
+class AeronConan(ConanFile):
     name = "aeron"
     version = "1.15.0"
-    description =   "Efficient reliable UDP unicast, \
-                    UDP multicast, and IPC message transport"
+    description = "Efficient reliable UDP unicast, UDP multicast, and IPC message transport"
     url = "https://github.com/real-logic/aeron"
     homepage = "https://github.com/real-logic/aeron/wiki"
     author = "helmesjo <helmesjo@gmail.com>"
     # Indicates License type of the packaged library
     license = "Apache License 2.0"
-
-    # Packages the license for the conanfile.py
-    exports = ["LICENSE.md"]
 
     # Remove following lines if the target lib does not use cmake.
     exports_sources = ["CMakeLists.txt"]
@@ -52,7 +50,7 @@ class LibnameConan(ConanFile):
     default_options = (
         "shared=False", 
         "fPIC=True",
-        "build_aeron_driver=False",
+        "build_aeron_driver=True",
         "build_tests=False",
         "build_samples=False",
     )

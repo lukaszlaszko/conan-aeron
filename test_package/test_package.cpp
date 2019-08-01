@@ -4,6 +4,6 @@
 
 int main()
 {
-    std::cout << "Bincrafters\n";
+    aeron::Context context;
     return EXIT_SUCCESS;
 }
